@@ -7,11 +7,9 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import firebase from 'react-native-firebase';
-import { Title, Fundo, Termos, BotaoTexto } from './styles';
-import { LinearGradient } from 'react-native-linear-gradient';
+// import { LinearGradient } from 'react-native-linear-gradient';
 
-type Props = {};
-export default class App extends Component<Props> {
+export default class App extends Component {
   state = {
     email: '',
     password: '',
@@ -36,11 +34,11 @@ export default class App extends Component<Props> {
   
   render() {
     return (
-      <Fundo style={styles.container}>
+      <View style={styles.container}>
 
       <Image style={styles.logo} source={require('./img/PersonalClub_Logo2-300x97.png')}/>
 
-        <Title>Login</Title>
+        <Text style={styles.titulo}>Login</Text>
 
         <TextInput 
           style={styles.input}
@@ -56,13 +54,13 @@ export default class App extends Component<Props> {
           onChangeText={password => this.setState({ password })}
           />
 
-          <Termos style={styles.margem}>
+          <Text style={styles.margem}>
           Ao prosseguir você estará de acordo com nossos 
             <Text style={{color: '#F38433'}} 
               onPress={() => LinkingIOS.openURL('http://www.google.com.br')}>
                  Termos de Uso e Política de Privacidade
             </Text>
-          </Termos>
+          </Text>
 
           <TouchableOpacity style={styles.button} onPress={this.login}>
             <Text style={styles.buttonText}>Entrar</Text>
@@ -70,7 +68,7 @@ export default class App extends Component<Props> {
 
           { this.state.isAuthenticated ? <alert>Logado com sucesso</alert> : null }
       
-      </Fundo>
+      </View>
     );
   }
 }
@@ -78,6 +76,10 @@ export default class App extends Component<Props> {
 const styles = StyleSheet.create({
   container: {
     padding: 20,
+    background: 'black',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   input: {
     height: 45,
@@ -109,5 +111,15 @@ const styles = StyleSheet.create({
   margem: {
     marginTop: 30,
     marginBottom: 40,
+    textAlign: 'center',
+    color: '#FFF',
+    fontSize: 15,
+  },
+  titulo: {
+    color:' #FFF',
+    fontSize: 35,
+    paddingBottom: 80,
+    fontWeight: 'bold',
+    fontFamily: 'Arial, Helvetica, sans-serif',
   }
 });
